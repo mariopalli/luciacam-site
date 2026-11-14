@@ -33,25 +33,31 @@
   .knopf { display:inline-flex; align-items:center; justify-content:center; padding:14px 22px; border-radius:12px; background:var(--rot); color:#fff; text-decoration:none; font:700 13px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.18em; text-transform:uppercase; transition:transform .15s ease, background .15s ease; }
   .knopf:hover { background:#f04b3e; transform:translateY(-1px); }
 
-  /* 1 HERO: schwarz, ein schraeges iPhone */
-  .top { background:#000; padding-top:clamp(28px, 5vw, 64px); padding-bottom:clamp(36px, 6vw, 80px); overflow:hidden; }
-  .top .innen { display:grid; grid-template-columns:minmax(0, 6fr) minmax(0, 5fr); align-items:center; gap:clamp(16px, 3vw, 40px); }
-  .marke { font-size:clamp(13px, 1.6vw, 18px); font-weight:600; color:var(--rot); margin-bottom:clamp(18px, 2.4vw, 32px); }
-  .top h1 { font-size:clamp(46px, 7.2vw, 92px); font-weight:700; line-height:1.0; letter-spacing:-.03em; }
-  .top .zeile { margin-top:clamp(14px, 1.6vw, 22px); font-size:clamp(18px, 2.1vw, 26px); color:var(--dim); }
-  .top .zeile { min-height:2.5em; line-height:1.25; }
-  .top .knopf { margin-top:clamp(26px, 3vw, 40px); }
+  /* 1 HERO: schwarz, Ueberschrift links, Telefone rechts. Linke Kante = die der ganzen Seite (1080). */
+  .top { background:#000; padding-top:clamp(28px, 4vw, 56px); padding-bottom:clamp(28px, 4vw, 56px); overflow:hidden; }
+  .top .innen { display:grid; grid-template-columns:minmax(0, 10fr) minmax(0, 11fr); align-items:center; gap:0; }
+  .top .innen > div:first-child { position:relative; z-index:1; }
+  .marke { font-size:clamp(13px, 1.4vw, 16px); font-weight:600; color:var(--rot); margin-bottom:clamp(20px, 2.6vw, 34px); }
+  .top h1 { font-size:clamp(50px, 9.4vw, 108px); font-weight:700; line-height:.95; letter-spacing:-.04em; margin-left:-.045em; }
+  /* Tippzeile: feste erste Zeile, getippte zweite. So steht unter der Ueberschrift immer dieselbe Form. */
+  .top .zeile { margin-top:clamp(22px, 2.6vw, 34px); font-size:clamp(18px, 1.95vw, 23px); line-height:1.3; color:var(--dim); }
+  .top .zeile .fest { display:block; }
+  .top .zeile .typ { display:block; min-height:2.6em; color:var(--ink); max-width:21em; }
+  .top .knopf { margin-top:clamp(14px, 1.6vw, 20px); }
   #tipp .rot { color:var(--rot); font-weight:600; }
-  @media (max-width:760px) { .top .zeile { min-height:3.75em; } .top .knopf { margin-top:20px; } }
   #tipp { border-right:2px solid var(--rot); padding-right:3px; animation:blink 1s steps(1) infinite; }
   @keyframes blink { 50% { border-right-color:transparent; } }
   @media (prefers-reduced-motion:reduce) { #tipp { border-right:0; animation:none; } }
   .top .bild { min-width:0; }
-  .top .bild img { display:block; width:100%; height:auto; }
-  .top .innen { max-width:1240px; grid-template-columns:minmax(0, 11fr) minmax(0, 12fr); gap:0; }
-  .top .innen > div:first-child { position:relative; z-index:1; margin-right:-2%; }
-  @media (min-width:1340px) { .top .bild img { width:108%; max-width:none; } }
-  @media (max-width:760px) { .top .innen { grid-template-columns:1fr; gap:0; } .top .bild { margin:8px -20px 0; } .top .innen > div:first-child { margin-right:0; } .top .bild img { width:100%; max-width:none; margin-left:0; } }
+  .top .bild img { display:block; width:100%; max-width:none; height:auto; }
+  @media (min-width:1180px) { .top .bild img { width:108%; margin-left:-3%; } }
+  @media (min-width:1440px) { .top .bild img { width:118%; margin-left:-4%; } }
+  @media (max-width:760px) {
+    .top .innen { grid-template-columns:1fr; }
+    .top .zeile .typ { min-height:3.9em; }
+    .top .bild { margin:4px -20px 0; }
+    .top .bild img { width:100%; margin-left:0; }
+  }
 
   /* 2 WAS LUCIA ANDERS MACHT */
   .anders { background:linear-gradient(180deg, #000 0%, var(--grund) 30%); padding-top:clamp(40px, 7vw, 96px); padding-bottom:clamp(48px, 8vw, 110px); }
@@ -152,7 +158,7 @@
     <div>
       <div class="marke mono">Lucia</div>
       <h1>A proper camera.</h1>
-      <p class="zeile" aria-label="For when you forgot your camera.">For when you <span id="tipp">forgot your camera.</span></p>
+      <p class="zeile" aria-label="For when you forgot your camera."><span class="fest">For when you</span><span class="typ"><span id="tipp">forgot your camera.</span></span></p>
       <a class="knopf" href="#beta">Get the beta</a>
     </div>
     <div class="bild"><img src="img/hero.webp" alt="Lucia viewfinder on iPhone" width="1400" height="1337" fetchpriority="high"></div>
