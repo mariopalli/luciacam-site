@@ -31,6 +31,7 @@
   h1 b { font-weight:600; }
   .lead { margin-top:clamp(18px, 2.5vw, 28px); max-width:34em; font-size:clamp(16px, 1.9vw, 21px); line-height:1.45; color:var(--dim); }
   .lead strong { color:var(--ink); font-weight:500; }
+  .lead + .lead { margin-top:clamp(10px, 1.4vw, 16px); }
 
   /* BUEHNE: die drei Geraete, alle Masse in Prozent der Buehnenbreite (1080 = 100cqw) */
   .buehne { position:relative; margin-top:clamp(24px, 4vw, 48px); width:100%; aspect-ratio:1080/700; container-type:inline-size; }
@@ -54,7 +55,7 @@
   .unterzeile .text { font-size:clamp(17px, 2.4vw, 27px); line-height:1.35; }
   .unterzeile .text span { color:var(--dim); }
   .unterzeile .spec { font-size:clamp(11px, 1.3vw, 15px); font-weight:500; color:var(--dim); text-align:right; line-height:1.9; letter-spacing:.22em; }
-  @media (max-width:560px) { .unterzeile .spec { text-align:left; } }
+  @media (max-width:560px) { .unterzeile .spec { text-align:left; } .lead br { display:none; } }
 
   /* BETA */
   .beta { padding:clamp(56px, 8vw, 110px) max(20px, env(safe-area-inset-left,0px)) clamp(56px, 8vw, 110px) max(20px, env(safe-area-inset-right,0px)); border-top:1px solid var(--linie); }
@@ -88,7 +89,8 @@
     <div class="kopf">
       <div class="marke mono">Lucia</div>
       <h1>One negative.<br><b>Every screen.</b></h1>
-      <p class="lead"><strong>Lucia is a camera for iPhone</strong> built around a flexible color pipeline. It captures a RAW negative and develops it with a look you choose. Fujifilm Film Simulations, grain, white balance, tone: all of it stays editable, on your iPhone, iPad and Mac.</p>
+      <p class="lead"><strong>Lucia is a camera for iPhone,</strong> built around a flexible color pipeline. <br>It captures a RAW negative and develops it with a look you choose. <br>Lucia comes with its own looks: Lucia Photo, Lucia Cine and Lucia Monochrome. It also takes third-party LUTs. One of our favorites: the Fujifilm Film Simulations.</p>
+      <p class="lead">Grain, white balance, tone: all of it stays editable. Save any edit as a preset, on iPhone, iPad and Mac.</p>
     </div>
 
     <div class="buehne" aria-label="Lucia on Mac, iPad and iPhone">
@@ -118,13 +120,13 @@
       <div class="karte" id="iphone">
         <div class="geraet mono">iPhone · iPad</div>
         <h3>Lucia</h3>
-        <p>The camera, the gallery, the editor. One app for iPhone and iPad; the iPad opens the same TestFlight link.</p>
+        <p>The camera, the gallery, the editor. One app for iPhone and iPad. <br>The iPad opens the same TestFlight link.</p>
         <a class="knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
       </div>
       <div class="karte" id="mac">
         <div class="geraet mono">Mac</div>
         <h3>Lucia for Mac</h3>
-        <p>Your whole library on the big screen. Pair once over Wi-Fi; afterwards the Mac finds your iPhone by itself.</p>
+        <p>Your whole library on the big screen. Pair once over Wi-Fi, afterwards Mac and iPhone connect via Lucia Link.</p>
         <a class="knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
       </div>
     </div>
