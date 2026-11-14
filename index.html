@@ -46,12 +46,10 @@
   #tipp { border-right:2px solid var(--rot); padding-right:3px; animation:blink 1s steps(1) infinite; }
   @keyframes blink { 50% { border-right-color:transparent; } }
   @media (prefers-reduced-motion:reduce) { #tipp { border-right:0; animation:none; } }
-  .schraeg { perspective:1600px; display:flex; justify-content:center; padding:clamp(20px, 3vw, 40px) 0; }
-  .schraeg .telefon { position:relative; width:min(300px, 62vw); aspect-ratio:600/1304; border-radius:13.5% / 6.2%; background:#0e0e0f; padding:3.4%; transform:rotateY(-22deg) rotateX(9deg) rotateZ(7deg); transform-style:preserve-3d; box-shadow:-1px 0 0 1px #3a3a3d, 10px 4px 0 -1px #1b1b1d, 12px 5px 0 0 #2e2e31, 60px 70px 110px rgba(0,0,0,.9), 0 0 140px rgba(255,255,255,.06); }
-  .schraeg .schirm { position:relative; width:100%; height:100%; border-radius:11.5% / 5.3%; overflow:hidden; background:#000; }
-  .schraeg .schirm img { display:block; width:100%; height:100%; object-fit:cover; }
-  .schraeg .insel { position:absolute; top:2.1%; left:50%; transform:translateX(-50%); width:30%; height:3.6%; border-radius:99px; background:#000; z-index:2; }
-  @media (max-width:760px) { .top .innen { grid-template-columns:1fr; gap:0; } }
+  .top .bild { min-width:0; }
+  .top .bild img { display:block; width:100%; height:auto; }
+  .top .innen { grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); }
+  @media (max-width:760px) { .top .innen { grid-template-columns:1fr; gap:0; } .top .bild { margin:8px -20px 0; } .top .bild img { width:112%; max-width:none; margin-left:-10%; } }
 
   /* 2 WAS LUCIA ANDERS MACHT */
   .anders { background:linear-gradient(180deg, #000 0%, var(--grund) 30%); padding-top:clamp(40px, 7vw, 96px); padding-bottom:clamp(48px, 8vw, 110px); }
@@ -155,9 +153,7 @@
       <p class="zeile" aria-label="For when you forgot your camera.">For when you <span id="tipp">forgot your camera.</span></p>
       <a class="knopf" href="#beta">Get the beta</a>
     </div>
-    <div class="schraeg" aria-hidden="true">
-      <div class="telefon"><div class="insel"></div><div class="schirm"><img src="img/sucher.webp" alt="" width="600" height="1304" fetchpriority="high"></div></div>
-    </div>
+    <div class="bild"><img src="img/hero.webp" alt="Lucia viewfinder on iPhone" width="1120" height="895" fetchpriority="high"></div>
   </div>
 </section>
 
