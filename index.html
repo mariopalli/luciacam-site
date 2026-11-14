@@ -202,23 +202,41 @@
 (function () {
   var el = document.getElementById("tipp");
   if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var saetze = [
-    "forgot yours at home.",
-    "don\u2019t have a camera in the first place.",
-    "always wanted a camera but you\u2019re broke.",
-    "actually forgot you have a camera. :)"
+  var erster = "forgot yours at home.";
+  var rest = [
+    "don\u2019t even own a camera.",
+    "find your camera\u2019s battery dead. Again.",
+    "decide you\u2019ll never need a camera again. :)",
+    "sold your camera to pay for the iPhone.",
+    "swore you\u2019d travel light this time.",
+    "brought the camera but not the SD card.",
+    "own three cameras and carried none of them.",
+    "just went out for milk.",
+    "told everyone you\u2019d \u201cget into photography\u201d."
   ];
-  var i = 0, n = saetze[0].length, loeschen = true;
+  // Der erste Satz steht fest, danach gemischt; jede Runde neu gemischt,
+  // ohne dass derselbe Satz zweimal hintereinander kommt.
+  function mische(letzter) {
+    var a = rest.slice();
+    for (var k = a.length - 1; k > 0; k--) { var z = Math.floor(Math.random() * (k + 1)); var t = a[k]; a[k] = a[z]; a[z] = t; }
+    if (a[0] === letzter) a.push(a.shift());
+    return a;
+  }
+  var folge = mische(""), t = erster, n = t.length, loeschen = true;
   function schritt() {
-    var t = saetze[i];
     if (loeschen) {
       n--; el.textContent = t.slice(0, n);
-      if (n === 0) { loeschen = false; i = (i + 1) % saetze.length; return setTimeout(schritt, 350); }
-      return setTimeout(schritt, 28);
+      if (n === 0) {
+        loeschen = false;
+        if (!folge.length) folge = mische(t);
+        t = folge.shift();
+        return setTimeout(schritt, 350);
+      }
+      return setTimeout(schritt, 26);
     }
     n++; el.textContent = t.slice(0, n);
     if (n === t.length) { loeschen = true; return setTimeout(schritt, 2600); }
-    setTimeout(schritt, 48 + Math.random() * 40);
+    setTimeout(schritt, 46 + Math.random() * 40);
   }
   setTimeout(schritt, 2600);
 })();
