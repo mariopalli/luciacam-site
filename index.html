@@ -117,6 +117,24 @@
   .faq details p { padding:0 0 24px; font-size:clamp(19px, 2.2vw, 26px); color:var(--dim); }
   @media (prefers-reduced-motion:reduce) { .faq summary i { transition:none; } }
 
+  /* POP-UP im Lucia-Stil: Titel gross, Hauptantwort rechts */
+  button.knopf { border:0; cursor:pointer; }
+  dialog.karte-dialog { margin:auto; width:min(420px, calc(100vw - 40px)); padding:26px 24px 22px; border:1px solid #2e2e31; border-radius:18px; background:#151517; color:var(--ink); box-shadow:0 30px 90px rgba(0,0,0,.7); }
+  dialog.karte-dialog::backdrop { background:rgba(0,0,0,.72); }
+  .karte-dialog h2 { font:700 13px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.2em; text-transform:uppercase; color:#fff; }
+  .karte-dialog p { margin-top:14px; font-size:16px; line-height:1.45; color:var(--dim); }
+  .karte-dialog p { text-wrap:pretty; }
+  .karte-dialog p b { color:var(--ink); font-weight:500; white-space:nowrap; }
+  .karte-dialog input[type=email] { display:block; width:100%; margin-top:18px; padding:13px 14px; border:1px solid #3a3a3d; border-radius:10px; background:#0c0c0d; color:var(--ink); font:inherit; font-size:16px; }
+  .karte-dialog input[type=email]:focus { outline:none; border-color:var(--rot); }
+  .karte-dialog .falle { position:absolute; left:-9999px; }
+  .karte-dialog .reihe { display:flex; gap:10px; margin-top:18px; }
+  .karte-dialog .reihe > * { flex:1; height:38px; padding:0 10px; border-radius:10px; border:0; cursor:pointer; font:700 12px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+  .karte-dialog .leise { background:#26262a; color:var(--ink); }
+  .karte-dialog .haupt { background:var(--rot); color:#fff; }
+  .karte-dialog .haupt[disabled] { opacity:.6; cursor:default; }
+  .karte-dialog .klein { margin-top:14px; font-size:12px; }
+
   footer { padding-top:36px; padding-bottom:calc(36px + env(safe-area-inset-bottom,0px)); border-top:1px solid var(--linie); }
   footer .innen { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--dim); }
   footer a { text-decoration:none; }
@@ -220,13 +238,13 @@
         <div class="geraet mono">iPhone · iPad</div>
         <h3>Lucia</h3>
         <p>On iPhone: the camera, the gallery, the editor. On iPad: no camera, just a very comfortable place to edit. Same app, same link.</p>
-        <a class="knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
+        <button type="button" class="knopf frueh" data-testflight="https://testflight.apple.com/join/4XkgSsub">Get the beta</button>
       </div>
       <div class="karte" id="mac">
         <div class="geraet mono">Mac</div>
         <h3>Lucia for Mac</h3>
         <p>Your whole library on the big screen. Pair once over Wi-Fi. After that, Mac and iPhone connect seamlessly via Lucia Link.</p>
-        <a class="knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
+        <button type="button" class="knopf frueh" data-testflight="https://testflight.apple.com/join/4XkgSsub">Get the beta</button>
       </div>
     </div>
     <p class="klein">iPhone 15 Pro or newer with iOS 18. Mac with Apple silicon and macOS 15 or later. iPad with iPadOS 18.</p>
@@ -239,6 +257,63 @@
     <div>© 2026 Mario Hainzl · <a href="mailto:hello@luciacam.app">hello@luciacam.app</a></div>
   </div>
 </footer>
+
+<dialog class="karte-dialog" id="frueh" aria-labelledby="frueh-titel">
+  <form id="frueh-form" novalidate>
+    <h2 id="frueh-titel">You are too early</h2>
+    <div id="frueh-frage">
+      <p>The new beta is not online yet. <b>It’s soon!</b><br>Leave your email and we’ll tell you the moment it is.</p>
+      <input type="email" id="frueh-mail" name="email" placeholder="you@example.com" autocomplete="email" required>
+      <input type="text" name="_honey" class="falle" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="klein">One email, when it’s ready. Nothing else.</p>
+      <div class="reihe">
+        <button type="button" class="leise" data-zu>Not now</button>
+        <button type="submit" class="haupt" id="frueh-los">Notify me</button>
+      </div>
+    </div>
+    <div id="frueh-danke" hidden>
+      <p><b>Got it.</b> We’ll write as soon as it’s online.</p>
+      <div class="reihe"><button type="button" class="haupt" data-zu>OK</button></div>
+    </div>
+    <div id="frueh-post" hidden>
+      <p>That didn’t go through. Write us a line instead and we’ll put you on the list.</p>
+      <div class="reihe">
+        <button type="button" class="leise" data-zu>Not now</button>
+        <a class="haupt" id="frueh-brief" href="mailto:hello@luciacam.app?subject=Tell%20me%20when%20the%20Lucia%20beta%20is%20online">Write to us</a>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(function () {
+  var d = document.getElementById("frueh"), form = document.getElementById("frueh-form");
+  if (!d || !d.showModal) return;
+  var teile = { frage: document.getElementById("frueh-frage"), danke: document.getElementById("frueh-danke"), post: document.getElementById("frueh-post") };
+  var mail = document.getElementById("frueh-mail"), los = document.getElementById("frueh-los"), wo = "";
+  function zeige(name) { for (var k in teile) teile[k].hidden = (k !== name); }
+  document.querySelectorAll(".frueh").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var karte = b.closest(".karte"); wo = karte ? karte.id : "";
+      zeige("frage"); los.disabled = false; d.showModal(); mail.focus();
+    });
+  });
+  d.addEventListener("click", function (e) { if (e.target === d || e.target.hasAttribute("data-zu")) d.close(); });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!mail.value || !mail.checkValidity()) { mail.focus(); return; }
+    if (form.elements._honey.value) { zeige("danke"); return; }
+    los.disabled = true;
+    fetch("https://formsubmit.co/ajax/hello@luciacam.app", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ email: mail.value, platform: wo || "unknown", _subject: "Lucia beta: notify me", _template: "table" })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (String(j.success) === "true") { zeige("danke"); mail.value = ""; } else { zeige("post"); }
+    }).catch(function () { zeige("post"); });
+  });
+})();
+</script>
 
 <script>
 (function () {
