@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lucia</title>
+<meta name="description" content="Lucia is an iPhone camera built around a flexible color pipeline. It captures a RAW negative and develops it with a look you choose. On iPhone, iPad and Mac.">
+<meta property="og:title" content="Lucia">
+<meta property="og:description" content="One negative. Every screen. A camera for iPhone, with Lucia for iPad and Mac.">
+<meta property="og:image" content="https://luciacam.app/img/og.jpg">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root { --grund:#0a0a0b; --ink:#ece7e0; --dim:#b9b2a9; --rot:#e23b2e; --linie:#26262a; color-scheme:dark; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--grund); }
+  body { background:var(--grund); color:var(--ink); font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a { color:inherit; }
+  .mono { font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing:.28em; text-transform:uppercase; }
+
+  /* HERO: der Baum als Grund, grau und dunkel wie im Mockup */
+  .hero { position:relative; overflow:hidden; padding:0 max(20px, env(safe-area-inset-left,0px)) 0 max(20px, env(safe-area-inset-right,0px)); }
+  .hero .grund { position:absolute; inset:0; background:url(img/baum.webp) center 20%/cover no-repeat; filter:grayscale(1) brightness(.38) contrast(1.05); }
+  .hero .verlauf { position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,10,11,.6) 0%, rgba(10,10,11,.05) 30%, rgba(10,10,11,.05) 55%, var(--grund) 100%); }
+  .hero .korn { position:absolute; inset:0; opacity:.06; pointer-events:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .innen { position:relative; max-width:1080px; margin:0 auto; }
+
+  .kopf { padding-top:clamp(40px, 7vw, 96px); }
+  .marke { font-size:clamp(13px, 1.6vw, 18px); font-weight:600; color:var(--rot); }
+  h1 { margin-top:clamp(14px, 2vw, 26px); font-weight:300; font-size:clamp(44px, 8.5vw, 92px); line-height:1.0; letter-spacing:-.025em; text-wrap:balance; }
+  h1 b { font-weight:600; }
+  .lead { margin-top:clamp(18px, 2.5vw, 28px); max-width:34em; font-size:clamp(16px, 1.9vw, 21px); line-height:1.45; color:var(--dim); }
+  .lead strong { color:var(--ink); font-weight:500; }
+
+  /* BUEHNE: die drei Geraete, alle Masse in Prozent der Buehnenbreite (1080 = 100cqw) */
+  .buehne { position:relative; margin-top:clamp(24px, 4vw, 48px); width:100%; aspect-ratio:1080/700; container-type:inline-size; }
+  .mac { position:absolute; left:19.4cqw; top:2cqw; width:61.1cqw; }
+  .mac .deckel { position:relative; height:39.1cqw; border-radius:2cqw 2cqw .6cqw .6cqw; background:#111; padding:1.3cqw 1.3cqw 2cqw; box-shadow:0 2.8cqw 7.4cqw rgba(0,0,0,.6), inset 0 0 0 .14cqw #2a2a2c; }
+  .mac .schirm { height:100%; border-radius:.75cqw; overflow:hidden; background:#000; }
+  .mac .schirm img { width:100%; height:100%; object-fit:cover; display:block; }
+  .mac .fuss { height:1.5cqw; margin:0 -3.1cqw; background:linear-gradient(#cfcfd2,#8d8d92); border-radius:.2cqw .2cqw 1.3cqw 1.3cqw; box-shadow:0 1.7cqw 3.7cqw rgba(0,0,0,.6); }
+  .mac .fuss i { display:block; width:11cqw; height:.55cqw; margin:0 auto; background:#76767b; border-radius:0 0 .75cqw .75cqw; }
+  .ipad { position:absolute; left:3.7cqw; top:24cqw; width:40.7cqw; height:31.9cqw; border-radius:2.8cqw; background:#0e0e0f; padding:1.4cqw; box-shadow:0 2.8cqw 6.5cqw rgba(0,0,0,.7), inset 0 0 0 .14cqw #2d2d30; }
+  .ipad .schirm { width:100%; height:100%; border-radius:1.6cqw; overflow:hidden; }
+  .ipad .schirm img { width:100%; height:100%; object-fit:cover; display:block; }
+  .iphone { position:absolute; left:75.2cqw; top:21.3cqw; width:18.3cqw; height:37.8cqw; border-radius:3.9cqw; background:#0e0e0f; padding:.85cqw; box-shadow:0 2.8cqw 6.5cqw rgba(0,0,0,.7), inset 0 0 0 .14cqw #3a3a3d; }
+  .iphone .schirm { position:relative; width:100%; height:100%; border-radius:3.1cqw; overflow:hidden; background:#000; }
+  .iphone .schirm img { width:100%; height:100%; object-fit:cover; display:block; }
+  .iphone .insel { position:absolute; top:.9cqw; left:50%; transform:translateX(-50%); width:5.7cqw; height:1.7cqw; border-radius:1cqw; background:#000; z-index:2; }
+  svg.link { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .pille { position:absolute; left:43.5cqw; top:43.7cqw; font-family:ui-monospace, "SF Mono", Menlo, monospace; font-size:1cqw; font-weight:600; letter-spacing:.2em; color:#fff; background:rgba(10,10,11,.72); border:1px solid rgba(226,59,46,.9); padding:.55cqw .95cqw .55cqw 2.4cqw; border-radius:2cqw; }
+  .pille::before { content:""; position:absolute; left:.95cqw; top:50%; width:.75cqw; height:.75cqw; margin-top:-.375cqw; border-radius:50%; background:var(--rot); box-shadow:0 0 1cqw var(--rot); }
+  .unterzeile { position:relative; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; padding:clamp(8px, 2vw, 24px) 0 clamp(40px, 6vw, 72px); }
+  .unterzeile .text { font-size:clamp(17px, 2.4vw, 27px); line-height:1.35; }
+  .unterzeile .text span { color:var(--dim); }
+  .unterzeile .spec { font-size:clamp(11px, 1.3vw, 15px); font-weight:500; color:var(--dim); text-align:right; line-height:1.9; letter-spacing:.22em; }
+  @media (max-width:560px) { .unterzeile .spec { text-align:left; } }
+
+  /* BETA */
+  .beta { padding:clamp(56px, 8vw, 110px) max(20px, env(safe-area-inset-left,0px)) clamp(56px, 8vw, 110px) max(20px, env(safe-area-inset-right,0px)); border-top:1px solid var(--linie); }
+  .beta h2 { font-weight:300; font-size:clamp(32px, 5vw, 56px); line-height:1.05; letter-spacing:-.02em; text-wrap:balance; }
+  .beta h2 b { font-weight:600; }
+  .beta .lead { margin-top:16px; }
+  .karten { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:clamp(28px, 4vw, 44px); }
+  .karte { display:flex; flex-direction:column; gap:14px; min-width:0; padding:26px 26px 24px; border:1px solid var(--linie); border-radius:16px; background:#101012; }
+  .karte .geraet { font-size:12px; font-weight:600; color:var(--dim); }
+  .karte h3 { font-size:24px; font-weight:600; letter-spacing:-.01em; }
+  .karte p { color:var(--dim); font-size:15px; line-height:1.5; flex:1; }
+  .knopf { display:inline-flex; align-items:center; justify-content:center; gap:10px; margin-top:6px; padding:14px 20px; border-radius:12px; background:var(--rot); color:#fff; text-decoration:none; font-size:13px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; font-family:ui-monospace, "SF Mono", Menlo, monospace; transition:transform .15s ease, background .15s ease; }
+  .knopf:hover { background:#f04b3e; transform:translateY(-1px); }
+  .knopf.bald { background:#1c1c1f; color:var(--dim); cursor:default; pointer-events:none; }
+  .klein { margin-top:22px; font-size:13px; color:var(--dim); line-height:1.6; }
+
+  /* FUSS */
+  footer { padding:36px max(20px, env(safe-area-inset-left,0px)) calc(36px + env(safe-area-inset-bottom,0px)) max(20px, env(safe-area-inset-right,0px)); border-top:1px solid var(--linie); }
+  footer .innen { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--dim); }
+  footer a { text-decoration:none; }
+  footer a:hover { color:var(--ink); }
+  @media (prefers-reduced-motion:reduce) { .knopf { transition:none; } }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="grund"></div>
+  <div class="verlauf"></div>
+  <div class="innen">
+    <div class="kopf">
+      <div class="marke mono">Lucia</div>
+      <h1>One negative.<br><b>Every screen.</b></h1>
+      <p class="lead"><strong>Lucia is a camera for iPhone</strong> built around a flexible color pipeline. It captures a RAW negative and develops it with a look you choose. Fujifilm Film Simulations, grain, white balance, tone: all of it stays editable, on your iPhone, iPad and Mac.</p>
+    </div>
+
+    <div class="buehne" aria-label="Lucia on Mac, iPad and iPhone">
+      <svg class="link" viewBox="0 0 1080 700" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M262 430 C 330 360, 420 340, 540 460" fill="none" stroke="#e23b2e" stroke-width="2" stroke-dasharray="3 7" opacity=".9"/>
+        <path d="M540 460 C 650 550, 760 460, 911 435" fill="none" stroke="#e23b2e" stroke-width="2" stroke-dasharray="3 7" opacity=".9"/>
+      </svg>
+      <div class="mac"><div class="deckel"><div class="schirm"><img src="img/mac.webp" alt="Lucia for Mac, editor with the red tree photo" width="1348" height="844"></div></div><div class="fuss"><i></i></div></div>
+      <div class="ipad"><div class="schirm"><img src="img/ipad.webp" alt="Lucia for iPad" width="1000" height="749"></div></div>
+      <div class="iphone"><div class="insel"></div><div class="schirm"><img src="img/iphone.webp" alt="Lucia on iPhone" width="600" height="1303"></div></div>
+      <div class="pille">SYNCED</div>
+    </div>
+
+    <div class="unterzeile">
+      <div class="text">Shoot on iPhone. Edit anywhere.<br><span>The same negative, the same recipe.</span></div>
+      <div class="spec mono">iPhone · iPad · Mac<br>Direct · Encrypted</div>
+    </div>
+  </div>
+  <div class="korn"></div>
+</section>
+
+<section class="beta" id="beta">
+  <div class="innen">
+    <h2>Lucia is in beta.<br><b>Get it on TestFlight.</b></h2>
+    <p class="lead">Free while in beta. Install TestFlight from the App Store first, then open the link on the device you want Lucia on.</p>
+    <div class="karten">
+      <div class="karte" id="iphone">
+        <div class="geraet mono">iPhone · iPad</div>
+        <h3>Lucia</h3>
+        <p>The camera, the gallery, the editor. One app for iPhone and iPad; the iPad opens the same TestFlight link.</p>
+        <a class="knopf" href="https://testflight.apple.com/join/XXXXXXXX">Get the beta</a>
+      </div>
+      <div class="karte" id="mac">
+        <div class="geraet mono">Mac</div>
+        <h3>Lucia for Mac</h3>
+        <p>Your whole library on the big screen. Pair once over Wi-Fi; afterwards the Mac finds your iPhone by itself.</p>
+        <a class="knopf" href="https://testflight.apple.com/join/YYYYYYYY">Get the beta</a>
+      </div>
+    </div>
+    <p class="klein">Lucia requires iPhone 15 Pro or newer and iOS 18. Lucia for Mac requires macOS 15 or later. Lucia for iPad requires iPadOS 18.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="innen">
+    <div><a href="https://www.instagram.com/luciacam.app/">Instagram @luciacam.app</a></div>
+    <div>© 2026 Mario Hainzl · <a href="mailto:hello@luciacam.app">hello@luciacam.app</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
