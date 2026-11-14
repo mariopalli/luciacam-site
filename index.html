@@ -28,7 +28,11 @@
   .marke { font-size:clamp(13px, 1.6vw, 18px); font-weight:600; color:var(--rot); margin-bottom:clamp(18px, 2.4vw, 32px); }
   .top h1 { font-size:clamp(46px, 7.2vw, 92px); font-weight:700; line-height:1.0; letter-spacing:-.03em; }
   .top .zeile { margin-top:clamp(14px, 1.6vw, 22px); font-size:clamp(18px, 2.1vw, 26px); color:var(--dim); }
-  .top .knopf { margin-top:clamp(24px, 2.8vw, 38px); }
+  .top .zeile { min-height:2.5em; line-height:1.25; }
+  #tipp { border-right:2px solid var(--rot); padding-right:3px; animation:blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { border-right-color:transparent; } }
+  @media (prefers-reduced-motion:reduce) { #tipp { border-right:0; animation:none; } }
+  .top .knopf { margin-top:clamp(10px, 1.4vw, 18px); }
   .schraeg { perspective:1600px; display:flex; justify-content:center; padding:clamp(20px, 3vw, 40px) 0; }
   .schraeg .telefon { position:relative; width:min(300px, 62vw); aspect-ratio:600/1304; border-radius:13.5% / 6.2%; background:#0e0e0f; padding:3.4%; transform:rotateY(-22deg) rotateX(9deg) rotateZ(7deg); transform-style:preserve-3d; box-shadow:-1px 0 0 1px #3a3a3d, 10px 4px 0 -1px #1b1b1d, 12px 5px 0 0 #2e2e31, 60px 70px 110px rgba(0,0,0,.9), 0 0 140px rgba(255,255,255,.06); }
   .schraeg .schirm { position:relative; width:100%; height:100%; border-radius:11.5% / 5.3%; overflow:hidden; background:#000; }
@@ -101,7 +105,7 @@
     <div>
       <div class="marke mono">Lucia</div>
       <h1>A proper camera.</h1>
-      <p class="zeile">For when you forgot yours at home.</p>
+      <p class="zeile" aria-label="For when you forgot yours at home.">For when you <span id="tipp">forgot yours at home.</span></p>
       <a class="knopf" href="#beta">Get the beta</a>
     </div>
     <div class="schraeg" aria-hidden="true">
@@ -193,6 +197,32 @@
     <div>© 2026 Mario Hainzl · <a href="mailto:hello@luciacam.app">hello@luciacam.app</a></div>
   </div>
 </footer>
+
+<script>
+(function () {
+  var el = document.getElementById("tipp");
+  if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var saetze = [
+    "forgot yours at home.",
+    "don\u2019t have a camera in the first place.",
+    "always wanted a camera but you\u2019re broke.",
+    "actually forgot you have a camera. :)"
+  ];
+  var i = 0, n = saetze[0].length, loeschen = true;
+  function schritt() {
+    var t = saetze[i];
+    if (loeschen) {
+      n--; el.textContent = t.slice(0, n);
+      if (n === 0) { loeschen = false; i = (i + 1) % saetze.length; return setTimeout(schritt, 350); }
+      return setTimeout(schritt, 28);
+    }
+    n++; el.textContent = t.slice(0, n);
+    if (n === t.length) { loeschen = true; return setTimeout(schritt, 2600); }
+    setTimeout(schritt, 48 + Math.random() * 40);
+  }
+  setTimeout(schritt, 2600);
+})();
+</script>
 
 </body>
 </html>
