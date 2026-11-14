@@ -272,8 +272,8 @@
       </div>
     </div>
     <div id="frueh-danke" hidden>
-      <p><b>Got it.</b> We’ll write as soon as it’s online.</p>
-      <div class="reihe"><button type="button" class="haupt" data-zu>OK</button></div>
+      <p><b>Woohoo, we’ve got your address.</b><br>Perfect. We’ll write the moment it’s online.</p>
+      <div class="reihe"><button type="button" class="haupt" data-zu>Nice</button></div>
     </div>
     <div id="frueh-post" hidden>
       <p>That didn’t go through. Write us a line instead and we’ll put you on the list.</p>
@@ -291,7 +291,11 @@
   if (!d || !d.showModal) return;
   var teile = { frage: document.getElementById("frueh-frage"), danke: document.getElementById("frueh-danke"), post: document.getElementById("frueh-post") };
   var mail = document.getElementById("frueh-mail"), los = document.getElementById("frueh-los"), wo = "";
-  function zeige(name) { for (var k in teile) teile[k].hidden = (k !== name); }
+  var titel = document.getElementById("frueh-titel");
+  function zeige(name) {
+    for (var k in teile) teile[k].hidden = (k !== name);
+    titel.textContent = name === "danke" ? "You\u2019re on the list" : "You are too early";
+  }
   document.querySelectorAll(".frueh").forEach(function (b) {
     b.addEventListener("click", function () {
       var karte = b.closest(".karte"); wo = karte ? karte.id : "";
