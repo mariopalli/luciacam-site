@@ -5,7 +5,7 @@
 window.LUCIA = {
   betaOnline: false,
   testflightApp: "https://apps.apple.com/app/testflight/id899247664",
-  join: "https://testflight.apple.com/join/4XkgSsub",
+  join: "https://testflight.apple.com/join/BrkD2jyF",
   // Welches Geraet schaut zu? Safari am iPad gibt sich als Mac aus; den
   // Unterschied macht der Touchscreen.
   geraet: (function () {
