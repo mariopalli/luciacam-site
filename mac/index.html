@@ -1,7 +1,171 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
-<title>Lucia for Mac</title>
-<meta http-equiv="refresh" content="0; url=/#mac">
-<link rel="canonical" href="https://luciacam.app/#mac">
-<style>html{background:#0a0a0b;color:#b9b2a9;font-family:-apple-system,Helvetica,Arial,sans-serif}body{padding:40px 20px}a{color:#e23b2e}</style>
-</head><body><p>Lucia for Mac: <a href="/#mac">luciacam.app</a></p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lucia for Mac and iPad.</title>
+<meta name="description" content="Your Lucia library on a big screen. View, rate and edit on Mac and iPad, and let your Mac keep the negatives your iPhone has no room for.">
+<link rel="canonical" href="https://luciacam.app/mac/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lucia">
+<meta property="og:url" content="https://luciacam.app/mac/">
+<meta property="og:title" content="Lucia for Mac and iPad.">
+<meta property="og:description" content="Your Lucia library on a big screen, and a home for your negatives.">
+<meta property="og:image" content="https://luciacam.app/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script src="../beta.js"></script>
+<style>
+  :root { --grund:#0a0a0b; --ink:#ece7e0; --dim:#b9b2a9; --rot:#e23b2e; --linie:#26262a; color-scheme:dark; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--grund); }
+  body { background:var(--grund); color:var(--ink); font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased; padding:clamp(28px, 5vw, 64px) max(20px, env(safe-area-inset-left,0px)) calc(48px + env(safe-area-inset-bottom,0px)) max(20px, env(safe-area-inset-right,0px)); }
+  main { max-width:720px; margin:0 auto; }
+  a { color:inherit; }
+  .mono { font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing:.28em; text-transform:uppercase; }
+  .marke { display:inline-block; text-decoration:none; font-size:15px; font-weight:600; color:var(--rot); }
+  h1 { margin-top:clamp(24px, 4vw, 44px); font-size:clamp(40px, 7.4vw, 76px); font-weight:700; line-height:.98; letter-spacing:-.035em; text-wrap:balance; }
+  .lead { margin-top:20px; font-size:clamp(18px, 2.3vw, 23px); line-height:1.42; color:var(--dim); max-width:30em; text-wrap:pretty; }
+  .lead b { color:var(--ink); font-weight:500; }
+  .block { margin-top:clamp(34px, 5vw, 54px); }
+  .schritte { list-style:none; display:flex; flex-direction:column; gap:14px; counter-reset:n; }
+  .schritte li { counter-increment:n; display:grid; grid-template-columns:36px minmax(0, 1fr); gap:16px; align-items:start; padding:22px 22px 22px 20px; border:1px solid var(--linie); border-radius:16px; background:#101012; }
+  .schritte li::before { content:counter(n); font:700 15px ui-monospace, "SF Mono", Menlo, monospace; color:var(--rot); width:34px; height:34px; border:1px solid rgba(226,59,46,.6); border-radius:50%; display:grid; place-items:center; }
+  .schritte.eins li { grid-template-columns:minmax(0, 1fr); }
+  .schritte.eins li::before { display:none; }
+  .schritte h2 { font-size:20px; font-weight:600; letter-spacing:-.01em; }
+  .schritte p { margin-top:6px; font-size:15px; line-height:1.5; color:var(--dim); text-wrap:pretty; }
+  .knopf { display:inline-flex; align-items:center; justify-content:center; margin-top:14px; padding:13px 20px; border:0; border-radius:12px; background:var(--rot); color:#fff; text-decoration:none; cursor:pointer; font:700 13px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.18em; text-transform:uppercase; }
+  .knopf:hover { background:#f04b3e; }
+  .knopf.leise { background:#26262a; color:var(--ink); }
+  .knopf.leise:hover { background:#303035; }
+  .adresse { margin-top:18px; padding:18px 20px; border:1px solid var(--linie); border-radius:14px; background:#0c0c0d; font:600 clamp(20px, 5.4vw, 30px) ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:-.01em; color:var(--ink); user-select:all; -webkit-user-select:all; overflow-wrap:anywhere; }
+  .reihe { display:flex; gap:10px; flex-wrap:wrap; }
+  .hinweis { margin-top:12px; font-size:13px; color:var(--dim); min-height:1.3em; }
+  .klein { margin-top:clamp(34px, 5vw, 54px); padding-top:20px; border-top:1px solid var(--linie); font-size:13px; line-height:1.6; color:#7d7872; }
+  .klein a { text-decoration:none; border-bottom:1px solid rgba(125,120,114,.5); }
+</style>
+</head>
+<body>
+<main>
+  <a class="marke mono" href="/">Lucia</a>
+  <h1>Lucia for Mac and iPad.</h1>
+  <p class="lead">Shoot on your iPhone, then see everything on a big screen. Rate and edit there, and every change follows on all your devices. <b>Your Mac can also keep the negatives your iPhone has no room for.</b></p>
+
+  <!-- BETA NOCH NICHT ONLINE (Mac oder iPad) -->
+  <section class="block" id="warten" hidden>
+    <ol class="schritte eins">
+      <li>
+        <div>
+          <h2>Not online yet. It’s soon!</h2>
+          <p>The new beta for Mac and iPad is on its way. Leave your email and we’ll tell you the moment it is.</p>
+          <a class="knopf" href="/#beta">Tell me when</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AM MAC ODER IPAD: die Schritte -->
+  <section class="block" id="schritte" hidden>
+    <ol class="schritte">
+      <li>
+        <div>
+          <h2>Install TestFlight</h2>
+          <p>Apple’s app for beta versions. Free, from the App Store<span id="wo-tf"></span>.</p>
+          <a class="knopf leise" id="tf" href="https://apps.apple.com/app/testflight/id899247664">Get TestFlight</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Install Lucia</h2>
+          <p>Open the invitation. TestFlight offers the version for this <span class="dies">device</span>.</p>
+          <a class="knopf" id="join" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Pair with your iPhone</h2>
+          <p>Open Lucia on both. Your <span class="dies">device</span> finds the iPhone by itself and asks for a code the iPhone shows. Once, and never again.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AM IPHONE: den Link dorthin bringen, wo er gebraucht wird -->
+  <section class="block" id="schicken" hidden>
+    <ol class="schritte eins">
+      <li>
+        <div>
+          <h2>Open this page on your Mac or iPad</h2>
+          <p>Lucia installs on the device you open the link on. So the link has to get there.</p>
+          <div class="adresse" id="adresse">luciacam.app/mac</div>
+          <div class="reihe">
+            <button type="button" class="knopf" id="senden">Send this link</button>
+            <button type="button" class="knopf leise" id="kopieren">Copy</button>
+          </div>
+          <p class="hinweis" id="hinweis" role="status"></p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ANDERES GERAET -->
+  <section class="block" id="fremd" hidden>
+    <ol class="schritte eins">
+      <li>
+        <div>
+          <h2>Lucia starts on an iPhone</h2>
+          <p>The camera needs an iPhone 15 Pro or newer. Lucia for Mac and iPad works together with it. Open luciacam.app on your iPhone to begin.</p>
+          <a class="knopf leise" href="/">About Lucia</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <p class="klein">Mac with Apple silicon and macOS 15 or later. iPad with iPadOS 18. Both need Lucia on an iPhone 15 Pro or newer. <a href="/">luciacam.app</a> · <a href="/privacy/">Privacy</a></p>
+</main>
+
+<script>
+(function () {
+  var L = window.LUCIA || { betaOnline: false, geraet: "andere" };
+  // Zum Ansehen ohne das Geraet: ?als=mac|ipad|iphone|andere und ?beta=1
+  var q = new URLSearchParams(location.search);
+  var geraet = q.get("als") || L.geraet, online = q.get("beta") === "1" ? true : L.betaOnline;
+  function zeige(id) { var e = document.getElementById(id); if (e) e.hidden = false; }
+  if (geraet === "iphone") {
+    zeige("schicken");
+  } else if (geraet === "mac" || geraet === "ipad") {
+    if (!online) { zeige("warten"); }
+    else {
+      zeige("schritte");
+      var name = geraet === "mac" ? "Mac" : "iPad";
+      document.querySelectorAll(".dies").forEach(function (e) { e.textContent = name; });
+      document.getElementById("wo-tf").textContent = geraet === "mac" ? " on your Mac" : " on your iPad";
+      if (L.testflightApp) document.getElementById("tf").href = L.testflightApp;
+      if (L.join) document.getElementById("join").href = L.join;
+    }
+  } else {
+    zeige("fremd");
+  }
+
+  // Am iPhone: Link verschicken (AirDrop, Nachrichten, Mail) oder kopieren.
+  var url = "https://luciacam.app/mac", hinweis = document.getElementById("hinweis");
+  var senden = document.getElementById("senden"), kopieren = document.getElementById("kopieren");
+  function sage(t) { if (hinweis) hinweis.textContent = t; }
+  if (senden) {
+    if (!navigator.share) senden.hidden = true;
+    senden.addEventListener("click", function () {
+      navigator.share({ title: "Lucia for Mac and iPad", url: url }).catch(function () {});
+    });
+  }
+  if (kopieren) kopieren.addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { sage("Copied. Paste it on your Mac or iPad."); })
+        .catch(function () { sage("Select the address above and copy it."); });
+    } else { sage("Select the address above and copy it."); }
+  });
+})();
+</script>
+</body>
+</html>

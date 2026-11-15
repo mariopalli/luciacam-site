@@ -20,6 +20,7 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Lucia","alternateName":["Lucia Camera","Lucia camera app"],"applicationCategory":"PhotographyApplication","operatingSystem":"iOS 18, iPadOS 18, macOS 15","description":"A camera app for iPhone that captures a RAW negative and develops it with a look you choose. With Lucia for iPad and Mac.","url":"https://luciacam.app/","image":"https://luciacam.app/img/og.jpg","author":{"@type":"Person","name":"Mario Hainzl"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"sameAs":["https://www.instagram.com/luciacam.app/"]}
 </script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="beta.js"></script>
 <style>
   :root { --grund:#0a0a0b; --ink:#ece7e0; --dim:#b9b2a9; --rot:#e23b2e; --linie:#26262a; color-scheme:dark; }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -109,6 +110,9 @@
   .karte h3 { font-size:24px; font-weight:600; letter-spacing:-.01em; }
   .karte p { color:var(--dim); font-size:15px; line-height:1.5; flex:1; text-wrap:pretty; }
   .karte .knopf { margin-top:6px; }
+  .beta .lead a.tf { color:var(--ink); text-decoration:none; border-bottom:1px solid rgba(236,231,224,.35); }
+  .beta .lead.fremd { color:var(--ink); }
+  .karte.vorn { order:-1; border-color:#3a3a3d; }
   .klein { margin-top:22px; font-size:13px; color:var(--dim); line-height:1.6; }
 
   /* FAQ: genau eine Frage */
@@ -238,7 +242,8 @@
 <section class="beta" id="beta">
   <div class="innen">
     <h2>Now go buy a camera strap for your phone and test my little app.</h2>
-    <p class="lead">Lucia is in beta and free while it is. Install TestFlight from the App Store, then open the link on the device you want Lucia on.</p>
+    <p class="lead">Lucia is in beta and free while it is. Install <a class="tf" href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store, then open the link on the device you want Lucia on.</p>
+    <p class="lead fremd" id="fremd" hidden>Lucia needs an iPhone 15 Pro or newer. Open this page there.</p>
     <div class="karten">
       <div class="karte" id="iphone">
         <div class="geraet mono">iPhone · iPad</div>
@@ -249,7 +254,7 @@
       <div class="karte" id="mac">
         <div class="geraet mono">Mac</div>
         <h3>Lucia for Mac</h3>
-        <p>Your whole library on the big screen. Pair once over Wi-Fi. After that, Mac and iPhone connect seamlessly via Lucia Link.</p>
+        <p>Your whole library on the big screen, and a home for your negatives. Pair once over Wi-Fi. After that, Mac and iPhone connect seamlessly via Lucia Link.</p>
         <button type="button" class="knopf frueh" data-testflight="https://testflight.apple.com/join/4XkgSsub">Get the beta</button>
       </div>
     </div>
@@ -303,8 +308,15 @@
     for (var k in teile) teile[k].hidden = (k !== name);
     titel.textContent = name === "danke" ? "You\u2019re on the list" : "You are too early";
   }
+  var L = window.LUCIA || { betaOnline: false, geraet: "andere" };
+  // Die Karte des Geraets, das zuschaut, steht vorn; fremde Geraete bekommen einen ehrlichen Satz.
+  var vorn = L.geraet === "mac" ? "mac" : (L.geraet === "iphone" || L.geraet === "ipad") ? "iphone" : "";
+  if (vorn) { var kv = document.getElementById(vorn); if (kv) kv.classList.add("vorn"); }
+  else { var fr = document.getElementById("fremd"); if (fr) fr.hidden = false; }
   document.querySelectorAll(".frueh").forEach(function (b) {
     b.addEventListener("click", function () {
+      // BETA ONLINE: direkt zu TestFlight (echter Klick, damit TestFlight aufgeht).
+      if (L.betaOnline) { window.location.href = b.getAttribute("data-testflight") || L.join; return; }
       var karte = b.closest(".karte"); wo = karte ? karte.id : "";
       zeige("frage"); los.disabled = false; d.showModal(); mail.focus();
     });
