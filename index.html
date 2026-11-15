@@ -149,6 +149,12 @@
   .karte-dialog .leise { background:#26262a; color:var(--ink); }
   .karte-dialog .haupt { background:var(--rot); color:#fff; }
   .karte-dialog .haupt[disabled] { opacity:.6; cursor:default; }
+  .karte-dialog .schritt { display:grid; grid-template-columns:28px minmax(0, 1fr); gap:12px; margin-top:20px; align-items:start; }
+  .karte-dialog .schritt .nr { width:28px; height:28px; border:1px solid rgba(226,59,46,.6); border-radius:50%; display:grid; place-items:center; font:700 12px ui-monospace, "SF Mono", Menlo, monospace; color:var(--rot); }
+  .karte-dialog .schritt h3 { font-size:16px; font-weight:600; color:var(--ink); line-height:28px; }
+  .karte-dialog .schritt p { margin-top:2px; font-size:14px; }
+  .karte-dialog .schritt .reihe { margin-top:12px; }
+  .karte-dialog .adresse { margin-top:16px; padding:14px 16px; border:1px solid #3a3a3d; border-radius:10px; background:#0c0c0d; font:600 20px ui-monospace, "SF Mono", Menlo, monospace; color:var(--ink); user-select:all; -webkit-user-select:all; }
   .karte-dialog .klein { margin-top:14px; font-size:12px; }
 
   footer { padding-top:36px; padding-bottom:calc(36px + env(safe-area-inset-bottom,0px)); border-top:1px solid var(--linie); }
@@ -259,7 +265,7 @@
         <div class="geraet mono">iPhone</div>
         <h3>Lucia</h3>
         <p>The camera, the gallery, the editor. <br>Everything Lucia does, in your pocket.</p>
-        <a class="knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
+        <a class="knopf" id="holen-knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
       </div>
       <div class="karte" id="mac">
         <div class="geraet mono">Mac · iPad</div>
@@ -305,6 +311,41 @@
       </div>
     </div>
   </form>
+</dialog>
+
+<!-- GET THE BETA (261115): am iPhone die zwei Schritte, sonst der Hinweis aufs iPhone. -->
+<dialog class="karte-dialog" id="holen" aria-labelledby="holen-titel">
+  <div id="holen-iphone" hidden>
+    <h2 id="holen-titel">Get the beta</h2>
+    <div class="schritt">
+      <div class="nr">1</div>
+      <div>
+        <h3>Install TestFlight</h3>
+        <p>Apple’s app for beta versions. Free.</p>
+        <div class="reihe"><a class="leise" href="https://apps.apple.com/app/testflight/id899247664">Get TestFlight</a></div>
+      </div>
+    </div>
+    <div class="schritt">
+      <div class="nr">2</div>
+      <div>
+        <h3>Install Lucia</h3>
+        <p>Come back here and tap this one.</p>
+        <div class="reihe"><a class="haupt" href="https://testflight.apple.com/join/4XkgSsub">Get Lucia</a></div>
+      </div>
+    </div>
+    <p class="klein">Already have TestFlight? Go straight to step 2.</p>
+    <div class="reihe"><button type="button" class="leise" data-zu>Not now</button></div>
+  </div>
+  <div id="holen-andere" hidden>
+    <h2>Lucia runs on iPhone</h2>
+    <p>Open this page on your <b>iPhone 15 Pro</b> or newer.</p>
+    <div class="adresse">luciacam.app</div>
+    <p class="klein" id="holen-hinweis" role="status">&nbsp;</p>
+    <div class="reihe">
+      <button type="button" class="leise" data-zu>Close</button>
+      <button type="button" class="haupt" id="holen-kopieren">Copy link</button>
+    </div>
+  </div>
 </dialog>
 
 <script>
@@ -395,6 +436,32 @@
     setTimeout(schritt, 46 + Math.random() * 40);
   }
   setTimeout(schritt, 2600);
+})();
+</script>
+<script>
+// GET THE BETA als Pop-up (Mario 261115): erst TestFlight, dann Lucia. Der
+// Vermerk #get in der Adresse oeffnet es nach einem Neuladen wieder (wer aus
+// dem App Store zurueckkommt, soll bei Schritt 2 landen).
+(function () {
+  var d = document.getElementById("holen"), knopf = document.getElementById("holen-knopf");
+  if (!d || !knopf || !d.showModal) return;   // ohne Dialog bleibt der direkte Link
+  var L = window.LUCIA || { geraet: "andere" };
+  var amIPhone = L.geraet === "iphone";
+  document.getElementById(amIPhone ? "holen-iphone" : "holen-andere").hidden = false;
+  function auf() { if (!d.open) d.showModal(); if (location.hash !== "#get") history.replaceState(null, "", "#get"); }
+  function zu() { if (d.open) d.close(); }
+  knopf.addEventListener("click", function (e) { e.preventDefault(); auf(); });
+  d.addEventListener("click", function (e) { if (e.target === d || e.target.hasAttribute("data-zu")) zu(); });
+  d.addEventListener("close", function () { if (location.hash === "#get") history.replaceState(null, "", "#beta"); });
+  var kop = document.getElementById("holen-kopieren"), hin = document.getElementById("holen-hinweis");
+  if (kop) kop.addEventListener("click", function () {
+    function sage(t) { if (hin) hin.textContent = t; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText("https://luciacam.app").then(function () { sage("Copied. Send it to your iPhone."); })
+        .catch(function () { sage("Select the address above and copy it."); });
+    } else { sage("Select the address above and copy it."); }
+  });
+  if (location.hash === "#get") auf();
 })();
 </script>
 
