@@ -130,6 +130,9 @@
 
   /* POP-UP im Lucia-Stil: Titel gross, Hauptantwort rechts */
   button.knopf { border:0; cursor:pointer; }
+  .knopf.leise { background:#26262a; color:var(--ink); }
+  .knopf.leise:hover { background:#303035; }
+  .hero .bald { margin-bottom:14px; font-size:12px; font-weight:600; color:var(--rot); }
   dialog.karte-dialog { margin:auto; width:min(420px, calc(100vw - 40px)); padding:26px 24px 22px; border:1px solid #2e2e31; border-radius:18px; background:#151517; color:var(--ink); box-shadow:0 30px 90px rgba(0,0,0,.7); }
   dialog.karte-dialog::backdrop { background:rgba(0,0,0,.72); }
   .karte-dialog h2 { font:700 13px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.2em; text-transform:uppercase; color:#fff; }
@@ -198,6 +201,7 @@
   <div class="verlauf"></div>
   <div class="innen">
     <div class="kopf">
+      <div class="bald mono">Coming soon</div>
       <h2>One negative.<br><b>Every screen.</b></h2>
       <p>Shoot on iPhone. Edit on the big one.</p>
     </div>
@@ -242,23 +246,23 @@
 <section class="beta" id="beta">
   <div class="innen">
     <h2>Now go buy a camera strap for your phone and test my little app.</h2>
-    <p class="lead">Lucia is in beta and free while it is. Install <a class="tf" href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store, then open the link on the device you want Lucia on.</p>
+    <p class="lead">Lucia is in beta and free while it is. Install <a class="tf" href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store, then tap the button on your iPhone.</p>
     <p class="lead fremd" id="fremd" hidden>Lucia needs an iPhone 15 Pro or newer. Open this page there.</p>
     <div class="karten">
       <div class="karte" id="iphone">
-        <div class="geraet mono">iPhone · iPad</div>
+        <div class="geraet mono">iPhone</div>
         <h3>Lucia</h3>
-        <p>On iPhone: the camera, the gallery, the editor. On iPad: no camera, just a very comfortable place to edit. Same app, same link.</p>
-        <button type="button" class="knopf frueh" data-testflight="https://testflight.apple.com/join/4XkgSsub">Get the beta</button>
+        <p>The camera, the gallery, the editor. <br>Everything Lucia does, in your pocket.</p>
+        <a class="knopf" href="https://testflight.apple.com/join/4XkgSsub">Get the beta</a>
       </div>
       <div class="karte" id="mac">
-        <div class="geraet mono">Mac</div>
-        <h3>Lucia for Mac</h3>
+        <div class="geraet mono">Mac · iPad</div>
+        <h3>Lucia for Mac and iPad</h3>
         <p>Your whole library on the big screen, and a home for your negatives. Pair once over Wi-Fi. After that, Mac and iPhone connect seamlessly via Lucia Link.</p>
-        <button type="button" class="knopf frueh" data-testflight="https://testflight.apple.com/join/4XkgSsub">Get the beta</button>
+        <button type="button" class="knopf leise frueh">Coming soon</button>
       </div>
     </div>
-    <p class="klein">iPhone 15 Pro or newer with iOS 18. Mac with Apple silicon and macOS 15 or later. iPad with iPadOS 18.</p>
+    <p class="klein">iPhone 15 Pro or newer with iOS 18. Lucia for Mac and iPad is coming soon.</p>
   </div>
 </section>
 
@@ -310,7 +314,8 @@
   }
   var L = window.LUCIA || { betaOnline: false, geraet: "andere" };
   // Die Karte des Geraets, das zuschaut, steht vorn; fremde Geraete bekommen einen ehrlichen Satz.
-  var vorn = L.geraet === "mac" ? "mac" : (L.geraet === "iphone" || L.geraet === "ipad") ? "iphone" : "";
+  // VORERST NUR IPHONE (261115): Mac und iPad kommen noch, ihre Karte fuehrt zur Warteliste.
+  var vorn = L.geraet === "iphone" ? "iphone" : "";
   if (vorn) { var kv = document.getElementById(vorn); if (kv) kv.classList.add("vorn"); }
   else { var fr = document.getElementById("fremd"); if (fr) fr.hidden = false; }
   document.querySelectorAll(".frueh").forEach(function (b) {
