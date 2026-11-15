@@ -27,7 +27,9 @@
   .marke { display:inline-block; text-decoration:none; font-size:15px; font-weight:600; color:var(--rot); }
   h1 { margin-top:clamp(24px, 4vw, 44px); font-size:clamp(40px, 7.4vw, 76px); font-weight:700; line-height:.98; letter-spacing:-.035em; text-wrap:balance; }
   .lead { margin-top:20px; font-size:clamp(18px, 2.3vw, 23px); line-height:1.42; color:var(--dim); max-width:30em; text-wrap:pretty; }
-  .lead b { color:var(--ink); font-weight:500; }
+  .lead.hell { margin-top:14px; color:var(--ink); }
+  .lead { text-wrap:balance; max-width:none; }
+  @media (max-width:860px) { .lead br { display:none; } }
   .block { margin-top:clamp(34px, 5vw, 54px); }
   .schritte { list-style:none; display:flex; flex-direction:column; gap:14px; counter-reset:n; }
   .schritte li { counter-increment:n; display:grid; grid-template-columns:36px minmax(0, 1fr); gap:16px; align-items:start; padding:22px 22px 22px 20px; border:1px solid var(--linie); border-radius:16px; background:#101012; }
@@ -51,7 +53,8 @@
 <main>
   <a class="marke mono" href="/">Lucia</a>
   <h1>Lucia for Mac and iPad.</h1>
-  <p class="lead">Shoot on your iPhone, then see everything on a big screen. Rate and edit there, and every change follows on all your devices. <b>Your Mac can also keep the negatives your iPhone has no room for.</b></p>
+  <p class="lead">Shoot on your iPhone, then see everything on a big screen. <br>Rate and edit there, and every change follows on all your devices.</p>
+  <p class="lead hell">Your Mac can also keep the negatives <br>your iPhone has no room for.</p>
 
   <!-- BETA NOCH NICHT ONLINE (Mac oder iPad) -->
   <section class="block" id="warten" hidden>
