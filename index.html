@@ -206,8 +206,9 @@
   .fp-wer .knopf { margin-top:26px; gap:10px; white-space:nowrap; }
   .fp-wer .knopf svg { width:10px; height:10px; flex:none; }
   .fp-zahl { margin-top:clamp(18px, 2.4vw, 28px); text-align:center; font-size:12px; font-weight:600; letter-spacing:.2em; color:var(--dim); }
-  .fp-pfeil { width:46px; height:46px; display:grid; place-items:center; border-radius:50%; border:1px solid #3a3a3d; background:rgba(10,10,11,.6); color:var(--ink); cursor:pointer; transition:border-color .15s ease, color .15s ease; }
-  .fp-pfeil:hover { border-color:var(--rot); color:var(--rot); }
+  .fp-pfeil { width:46px; height:46px; display:grid; place-items:center; border-radius:12px; border:0; background:#26262a; color:var(--ink); cursor:pointer; transition:background .15s ease, transform .15s ease; }
+  .fp-pfeil:hover { background:var(--rot); color:#fff; }
+  .fp-pfeil:active { transform:scale(.96); }
   .fp-pfeil svg { width:16px; height:16px; }
   @media (min-width:761px) {
     .fp-folien { margin:0 68px; }
@@ -455,6 +456,7 @@
               <h3>Stefan Leitner</h3>
               <p class="rolle mono">Photographer <span class="nw"><i>· </i>Austria</span></p>
               <blockquote><span>“<i class="eh">Finally, I can use my phone</i> <i class="eh">as a sidekick camera</i> <i class="eh">to document my&nbsp;work.</i></span><span>This is what I’ve always been looking&nbsp;for.”</span></blockquote>
+              <a class="knopf" href="https://www.instagram.com/stefan_leitner/" target="_blank" rel="noopener">See more of Stefan’s work<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
             </div>
           </article>
           <article class="fp-folie" data-name="BOBB¥S Agency">
@@ -471,14 +473,31 @@
               <h3>BOBB¥S Agency</h3>
               
               <blockquote><span>“Fuck, I love&nbsp;it.</span><span>It’s insanely good, I’m seriously&nbsp;hooked.</span><span>I keep getting people to try&nbsp;it.”</span></blockquote>
+              <a class="knopf" href="https://www.instagram.com/bobbys.agency/" target="_blank" rel="noopener">See more of BOBB¥S’ work<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
+            </div>
+          </article>
+          <article class="fp-folie" data-name="Adina Asbeck">
+            <div>
+              <button type="button" class="fp-bild" aria-label="View Adina Asbeck’s photo full screen"><img class="an" src="img/featured/adina-1.webp?p5" data-gross="img/featured/adina-1-gross.webp?p5" style="--k:0.01107" alt="Photo 1 of 4 by Adina Asbeck" width="1200" height="679" draggable="false"><img src="img/featured/adina-2.webp?p5" data-gross="img/featured/adina-2-gross.webp?p5" style="--k:0.01100" alt="Photo 2 of 4 by Adina Asbeck" width="1200" height="2133" draggable="false"><img src="img/featured/adina-3.webp?p5" data-gross="img/featured/adina-3-gross.webp?p5" style="--k:0.01319" alt="Photo 3 of 4 by Adina Asbeck" width="1200" height="813" draggable="false"><img src="img/featured/adina-4.webp?p5" data-gross="img/featured/adina-4-gross.webp?p5" style="--k:0.01100" alt="Photo 4 of 4 by Adina Asbeck" width="1200" height="2133" draggable="false"></button>
+              <div class="fp-fotonav">
+                <button type="button" class="klein-pfeil zurueck" aria-label="Previous photo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.5 4.5 8 10 13.5"/></svg></button>
+                <div class="fp-punkte"><button type="button" class="an" aria-label="Photo 1 of 4"></button><button type="button" aria-label="Photo 2 of 4"></button><button type="button" aria-label="Photo 3 of 4"></button><button type="button" aria-label="Photo 4 of 4"></button></div>
+                <button type="button" class="klein-pfeil vorwaerts" aria-label="Next photo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5 11.5 8 6 13.5"/></svg></button>
+              </div>
+            </div>
+            <div class="fp-wer">
+              <div class="portrait"><img src="img/featured/adina-portrait.webp?p5" alt="Adina Asbeck" width="240" height="240"></div>
+              <h3>Adina Asbeck</h3>
+              <blockquote><span>“<i class="eh">I haven’t used the native camera</i> <i class="eh">since I got&nbsp;Lucia.</i></span><span><i class="eh">Usually I shoot a&nbsp;Leica.</i> <i class="eh">I have to admit</i> <i class="eh">I’ve left it at home</i> <i class="eh">more often&nbsp;lately.</i></span><span>Aiaiai.”</span></blockquote>
+              <a class="knopf" href="https://www.instagram.com/adina.asbeck/" target="_blank" rel="noopener">See more of Adina’s work<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
             </div>
           </article>
           <article class="fp-folie" data-name="Mario Hainzl">
             <div>
-              <button type="button" class="fp-bild" aria-label="View Mario Hainzl’s photo full screen"><img class="an" src="img/featured/mario-p1.webp?p5" data-gross="img/featured/mario-p1-gross.webp?p5" style="--k:0.01456" alt="Photo 1 of 6 by Mario Hainzl" width="1200" height="1600" draggable="false"><img src="img/featured/mario-p2.webp?p5" data-gross="img/featured/mario-p2-gross.webp?p5" style="--k:0.01456" alt="Photo 2 of 6 by Mario Hainzl" width="1200" height="1600" draggable="false"><img src="img/featured/mario-p3.webp?p5" data-gross="img/featured/mario-p3-gross.webp?p5" style="--k:0.01456" alt="Photo 3 of 6 by Mario Hainzl" width="1200" height="1600" draggable="false"><img src="img/featured/mario-p4.webp?p5" data-gross="img/featured/mario-p4-gross.webp?p5" style="--k:0.01456" alt="Photo 4 of 6 by Mario Hainzl" width="1200" height="1600" draggable="false"><img src="img/featured/mario-p5.webp?p5" data-gross="img/featured/mario-p5-gross.webp?p5" style="--k:0.01456" alt="Photo 5 of 6 by Mario Hainzl" width="1200" height="900" draggable="false"><img src="img/featured/mario-p6.webp?p5" data-gross="img/featured/mario-p6-gross.webp?p5" style="--k:0.01456" alt="Photo 6 of 6 by Mario Hainzl" width="1200" height="1600" draggable="false"></button>
+              <button type="button" class="fp-bild" aria-label="View Mario Hainzl’s photo full screen"><img class="an" src="img/featured/mario-1.webp?p4" data-gross="img/featured/mario-1-gross.webp?p4" style="--k:0.01456" alt="Photo 1 of 3 by Mario Hainzl" width="1200" height="900" draggable="false"><img src="img/featured/mario-2.webp?p4" data-gross="img/featured/mario-2-gross.webp?p4" style="--k:0.01456" alt="Photo 2 of 3 by Mario Hainzl" width="1200" height="1600" draggable="false"><img src="img/featured/mario-4.webp?p4" data-gross="img/featured/mario-4-gross.webp?p4" style="--k:0.01550" alt="Photo 3 of 3 by Mario Hainzl" width="1200" height="960" draggable="false"></button>
               <div class="fp-fotonav">
                 <button type="button" class="klein-pfeil zurueck" aria-label="Previous photo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.5 4.5 8 10 13.5"/></svg></button>
-                <div class="fp-punkte"><button type="button" class="an" aria-label="Photo 1 of 6"></button><button type="button" aria-label="Photo 2 of 6"></button><button type="button" aria-label="Photo 3 of 6"></button><button type="button" aria-label="Photo 4 of 6"></button><button type="button" aria-label="Photo 5 of 6"></button><button type="button" aria-label="Photo 6 of 6"></button></div>
+                <div class="fp-punkte"><button type="button" class="an" aria-label="Photo 1 of 3"></button><button type="button" aria-label="Photo 2 of 3"></button><button type="button" aria-label="Photo 3 of 3"></button></div>
                 <button type="button" class="klein-pfeil vorwaerts" aria-label="Next photo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5 11.5 8 6 13.5"/></svg></button>
               </div>
             </div>
@@ -487,12 +506,13 @@
               <h3>Mario Hainzl</h3>
               <p class="rolle mono">Documentary filmmaker <span class="nw"><i>· </i>Dalmatia</span></p>
               <blockquote><span>“<i class="eh">I created Lucia,</i> <i class="eh">so what&nbsp;I&nbsp;say really doesn’t&nbsp;matter.</i></span><span><i class="eh">But why Lucia?</i> <i class="eh">I wanted something in my pocket</i> <i class="eh">that sits well next to my&nbsp;GFX</i> <i class="eh">when things move&nbsp;fast.</i>”</span></blockquote>
+              <a class="knopf" href="https://www.instagram.com/mariohainzl/" target="_blank" rel="noopener">See more of Mario’s work<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
             </div>
           </article>
         </div>
         <div class="fp-unten">
           <button type="button" class="fp-pfeil vor" aria-label="Previous photographer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.5 4.5 8 10 13.5"/></svg></button>
-          <div class="fp-zahl ziffern" aria-live="polite">01 / 03</div>
+          <div class="fp-zahl ziffern" aria-live="polite">01 / 04</div>
           <button type="button" class="fp-pfeil weiter" aria-label="Next photographer"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5 11.5 8 6 13.5"/></svg></button>
         </div>
       </div>
