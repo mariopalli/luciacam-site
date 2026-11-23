@@ -488,7 +488,7 @@
             <div class="fp-wer">
               <div class="portrait"><img src="img/featured/adina-portrait.webp?p5" alt="Adina Asbeck" width="240" height="240"></div>
               <h3>Adina Asbeck</h3>
-              <blockquote><span>“<i class="eh">Honestly, I haven’t touched</i> <i class="eh">the native camera app</i> <i class="eh">since Lucia came&nbsp;along.</i></span><span><i class="eh">I’m usually a Leica girl,</i> <i class="eh">but lately she’s been staying home</i> <i class="eh">a lot more than she&nbsp;should.</i>”</span></blockquote>
+              <blockquote><span>“<i class="eh">Honestly, I haven’t touched</i> <i class="eh">the native camera app</i> <i class="eh">since Lucia came&nbsp;along.</i></span><span><i class="eh">I’m usually a Leica girl,</i> <i class="eh">but lately she’s been staying home</i> <i class="eh">a lot more than she&nbsp;should.</i> <i class="eh">It’s that&nbsp;good.</i>”</span></blockquote>
               <a class="knopf" href="https://www.instagram.com/adina.asbeck/" target="_blank" rel="noopener">See more of Adina’s work<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8 8 2M3.5 2H8v4.5"/></svg></a>
             </div>
           </article>
@@ -715,22 +715,21 @@
   var el = document.getElementById("tipp");
   if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var erster = "forgot your camera.";
+  var zweiter = "want your phone\u2019s look to match your big bang camera.";
   var letzter = "decide you\u2019ll never need a camera again because you loooove Lucia so much. <3";
   var rest = [
     "don\u2019t even own a camera.",
-    "find your camera\u2019s battery dead. Again.",
     "sold your camera to pay for the iPhone.",
     "swore you\u2019d travel light this time.",
-    "brought the camera but not the SD card.",
-    "own three cameras and carried none of them.",
     "just went out for milk.",
-    "told everyone you\u2019d \u201cget into photography\u201d."
+    "told everyone you\u2019d \u201cget into photography\u201d.",
+    "don\u2019t have pockets big enough for a DSLR."
   ];
-  // Runde: erster Satz fest, die mittleren gemischt, der Lucia-Satz als Schluss.
+  // Runde: erster und zweiter Satz fest, die mittleren gemischt, der Lucia-Satz als Schluss.
   function runde() {
     var a = rest.slice();
     for (var k = a.length - 1; k > 0; k--) { var z = Math.floor(Math.random() * (k + 1)); var x = a[k]; a[k] = a[z]; a[z] = x; }
-    return a.concat([letzter, erster]);
+    return [zweiter].concat(a, [letzter, erster]);
   }
   // "Lucia" im Schlusssatz rot; die Texte sind eigene, feste Zeichenketten.
   function zeige(text) {
