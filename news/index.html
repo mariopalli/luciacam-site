@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What’s new in Lucia.</title>
+<meta name="description" content="Release notes for Lucia, the iPhone camera, and Lucia RAW Studio for Mac and iPad.">
+<link rel="canonical" href="https://luciacam.app/news/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lucia">
+<meta property="og:url" content="https://luciacam.app/news/">
+<meta property="og:title" content="What’s new in Lucia.">
+<meta property="og:description" content="Lucia RAW Studio for Mac and iPad, a home for your negatives, video rebuilt and a lot more camera.">
+<meta property="og:image" content="https://luciacam.app/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+  :root { --grund:#0a0a0b; --ink:#ece7e0; --dim:#b9b2a9; --rot:#e23b2e; --linie:#26262a; color-scheme:dark; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--grund); }
+  body { background:var(--grund); color:var(--ink); font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased; padding:clamp(28px, 5vw, 64px) max(20px, env(safe-area-inset-left,0px)) calc(48px + env(safe-area-inset-bottom,0px)) max(20px, env(safe-area-inset-right,0px)); }
+  main { max-width:720px; margin:0 auto; }
+  a { color:inherit; }
+  .nw { white-space:nowrap; }
+  .mono { font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing:.28em; text-transform:uppercase; }
+  .marke { display:inline-block; text-decoration:none; font-size:15px; font-weight:600; color:var(--rot); }
+  h1 { margin-top:clamp(24px, 4vw, 44px); font-size:clamp(40px, 7.4vw, 76px); font-weight:700; line-height:.98; letter-spacing:-.035em; text-wrap:balance; }
+  .lead { margin-top:20px; font-size:clamp(18px, 2.3vw, 23px); line-height:1.42; color:var(--dim); text-wrap:balance; }
+
+  /* Eine Version */
+  .version { margin-top:clamp(34px, 5vw, 54px); border:1px solid var(--linie); border-radius:16px; background:#101012; padding:clamp(22px, 4vw, 36px); }
+  .kopfzeile { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:baseline; font-size:12px; color:var(--dim); }
+  .kopfzeile b { color:var(--rot); font-weight:700; }
+  .version > h2 { margin-top:12px; font-size:clamp(26px, 4vw, 34px); font-weight:700; letter-spacing:-.025em; line-height:1.1; text-wrap:balance; }
+  .version > p.intro { margin-top:12px; font-size:17px; line-height:1.55; color:var(--dim); text-wrap:pretty; }
+  .version > p.intro strong { color:var(--ink); font-weight:600; }
+
+  .teil { margin-top:30px; padding-top:22px; border-top:1px solid var(--linie); }
+  .teil h3 { font-size:20px; font-weight:600; letter-spacing:-.01em; text-wrap:balance; }
+  .teil > p { margin-top:8px; font-size:15px; line-height:1.55; color:var(--dim); text-wrap:pretty; }
+  .teil ul { list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:8px; }
+  .teil li { position:relative; padding-left:20px; font-size:15px; line-height:1.55; color:var(--dim); text-wrap:pretty; }
+  .teil li::before { content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; background:var(--rot); border-radius:1px; }
+  .teil li b { color:var(--ink); font-weight:600; }
+
+  /* Inhaltsleiste */
+  .sprung { margin-top:22px; display:flex; flex-wrap:wrap; gap:8px; }
+  .sprung a { text-decoration:none; padding:8px 12px; border-radius:10px; background:#1a1a1d; font:600 11px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); }
+  .sprung a:hover { background:var(--rot); color:#fff; }
+
+  /* Aeltere Versionen */
+  details.version { padding:0; }
+  details.version summary { list-style:none; cursor:pointer; padding:clamp(20px, 3.4vw, 28px) clamp(22px, 4vw, 36px); display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  details.version summary::-webkit-details-marker { display:none; }
+  details.version summary h2 { margin-top:8px; font-size:22px; font-weight:700; letter-spacing:-.02em; }
+  details.version summary .auf { flex:none; width:34px; height:34px; border-radius:10px; background:#26262a; display:grid; place-items:center; transition:transform .2s; }
+  details.version[open] summary .auf { transform:rotate(180deg); }
+  details.version .innen { padding:0 clamp(22px, 4vw, 36px) clamp(22px, 4vw, 36px); }
+  details.version .innen .teil:first-child { margin-top:0; }
+
+  .knopf { display:inline-flex; align-items:center; justify-content:center; margin-top:18px; padding:13px 20px; border:0; border-radius:12px; background:var(--rot); color:#fff; text-decoration:none; font:700 13px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.18em; text-transform:uppercase; }
+  .knopf:hover { background:#f04b3e; }
+  .gruss { margin-top:30px; font-size:17px; color:var(--ink); }
+  .klein { margin-top:clamp(34px, 5vw, 54px); padding-top:20px; border-top:1px solid var(--linie); font-size:13px; line-height:1.6; color:#7d7872; }
+  .klein a { text-decoration:none; border-bottom:1px solid rgba(125,120,114,.5); }
+</style>
+<script data-goatcounter="https://lucia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<main>
+  <a class="marke mono" href="/">Lucia</a>
+  <h1>What’s new in&nbsp;Lucia.</h1>
+  <p class="lead"><span class="nw">Every beta,</span> <span class="nw">what changed and why.</span> <span class="nw">Most of it started with</span> <span class="nw">one of your messages.</span></p>
+
+  <!-- NEUESTE VERSION -->
+  <article class="version" id="beta-6">
+    <div class="kopfzeile mono"><b>Beta 6</b><span>Coming soon</span></div>
+    <h2>Lucia has a second&nbsp;home.</h2>
+    <p class="intro">The biggest update so far. Lucia is no longer just an iPhone app: it now has a home on your Mac and iPad, a new video engine, a lot more camera, and a library that takes care of itself. Thank you to everyone who tested and sent feedback and pictures. <strong>Please keep sending&nbsp;images!</strong></p>
+
+    <nav class="sprung" aria-label="Sections">
+      <a href="#studio">RAW Studio</a><a href="#link">Lucia Link</a><a href="#home">Negatives</a><a href="#backup">Backup</a><a href="#video">Video</a><a href="#kamera">Camera</a><a href="#editing">Editing</a><a href="#fixed">Fixed</a>
+    </nav>
+
+    <section class="teil" id="studio">
+      <h3>Lucia RAW Studio for Mac and&nbsp;iPad</h3>
+      <p>Lucia RAW Studio shares everything with your iPhone: the same library, the same looks, the same edits, the same&nbsp;presets.</p>
+      <ul>
+        <li>View, rate and edit every shot on a big screen, full screen if you&nbsp;like.</li>
+        <li>Library in rows that keep each photo’s real shape, or as classic&nbsp;tiles.</li>
+        <li>Sidebar by year, month and day, plus your devices and&nbsp;drives.</li>
+        <li>A map of all your photos. Tap a cluster and swipe through just&nbsp;those.</li>
+        <li><b>Custom albums.</b> Drag photos straight into them, from the library, the map or the editor, and put them in any order you&nbsp;like.</li>
+        <li>Import from your iPhone or from a drive. Lucia knows what is new and never imports a photo&nbsp;twice.</li>
+        <li>Export with passepartout, Instagram canvas and the format of your choice. Or copy an image to the clipboard and paste it&nbsp;anywhere.</li>
+        <li><b>Keyboard first.</b> Hold E, S, H, C, K or W and use the arrows for exposure, tone curve, color, Kelvin and WB shift. P and the arrows run through your presets. Tab shows the keys right next to the menu rows, and every key can be&nbsp;changed.</li>
+        <li>A proper menu bar on Mac and iPad: File, Edit, Photo,&nbsp;View.</li>
+        <li><b>Library Overview:</b> one number for your whole library, and exactly where every photo&nbsp;lives.</li>
+        <li><b>Tethering:</b> shoot on your iPhone and the photo lands on your&nbsp;Mac.</li>
+      </ul>
+      <a class="knopf" href="/mac/">Lucia RAW Studio</a>
+    </section>
+
+    <section class="teil" id="link">
+      <h3>Lucia Link</h3>
+      <p>Pair once with a code. After that iPhone, Mac and iPad find each other on your Wi-Fi, or directly when there is no network&nbsp;around.</p>
+      <ul>
+        <li>New photos, ratings and edits go back and forth by&nbsp;themselves.</li>
+        <li>Edits on the Mac show up on the iPhone, even in an open&nbsp;editor.</li>
+        <li>One pop-up tells you what will happen. No chain of&nbsp;questions.</li>
+        <li>While syncing, your iPhone shows a calm Link screen with a progress bar and STOP&nbsp;TRANSFER. Your Mac shows it in the menu&nbsp;bar.</li>
+        <li>Several Lucia devices in the same network work&nbsp;together.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="home">
+      <h3>Your negatives have a&nbsp;home</h3>
+      <p>Negatives are big. Your iPhone shouldn’t have to carry all of&nbsp;them.</p>
+      <ul>
+        <li>Your Mac or iPad is the home of your negatives. It keeps all of&nbsp;them.</li>
+        <li>Your iPhone keeps a storage budget: Small 15&nbsp;GB, Medium 30&nbsp;GB, Large 90&nbsp;GB or No limit. Lucia picks a sensible one and tells&nbsp;you.</li>
+        <li>Recent and highly rated photos stay on the iPhone the&nbsp;longest.</li>
+        <li>A negative only leaves your iPhone once a safe copy exists. Prints, stars and edits always&nbsp;stay.</li>
+        <li>Open a photo whose negative is elsewhere and Lucia fetches it from your Mac or iPad in a few&nbsp;seconds.</li>
+        <li>Small marks tell you where a negative lives: ON&nbsp;MAC, ON&nbsp;IPAD, ON&nbsp;DRIVE.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="backup">
+      <h3>Backup on the&nbsp;go</h3>
+      <p>On the road without a Mac? Connect a compatible SSD to your iPhone or&nbsp;iPad.</p>
+      <ul>
+        <li>BACKUP NOW copies your negatives to the drive and frees up&nbsp;space.</li>
+        <li>Folders by year, month and day, named after the place you shot: <span class="nw">2026-10-07&nbsp;Zadar.</span></li>
+        <li>Every photo travels as negative, print and recipe, so the drive is a complete library on its&nbsp;own.</li>
+        <li>Ratings and recipes are matched both ways when you plug&nbsp;in.</li>
+        <li>The drive icon pulses red as long as something isn’t backed up&nbsp;yet.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="video">
+      <h3>Video, rebuilt</h3>
+      <p>Video got its own engine, its own library and its own&nbsp;editor.</p>
+      <ul>
+        <li>Lucia records a 4K Apple Log master and grades it afterwards. Your look is never burned&nbsp;in.</li>
+        <li>24, 25, 30, 50, 60 and 120&nbsp;fps with 180&nbsp;degree shutter. Open Gate 4:3 on supported&nbsp;lenses.</li>
+        <li>Record straight to an external drive. The header shows the minutes&nbsp;left.</li>
+        <li>Stereo sound at 48&nbsp;kHz.</li>
+        <li>Clip editor with the same menu as photos: presets, films, white balance, black point, lens correction,&nbsp;grain.</li>
+        <li>Slow motion playback and export, with&nbsp;sound.</li>
+        <li>Export graded as HEVC, or as Log: Apple Log, F-Log, F-Log2 or S-Log3, ready for your grading&nbsp;software.</li>
+        <li>Live histogram in the viewfinder. Swipe up or&nbsp;down.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="kamera">
+      <h3>Camera</h3>
+      <ul>
+        <li><b>14&nbsp;mm and 50&nbsp;mm.</b> Tap the selected lens a second time: 18 becomes 14, 35 becomes 50. Lucia remembers your&nbsp;choice.</li>
+        <li>The 50&nbsp;mm is a real sensor crop, so video at 50&nbsp;mm is true&nbsp;4K.</li>
+        <li>Grid drawer with thirds, center cross and LEVEL, a horizon line that clicks into place when you’re&nbsp;straight.</li>
+        <li>STRAIGHTEN AUTO uses the angle at the exact moment you pressed the shutter. Up to 15&nbsp;degrees.</li>
+        <li>Faces only take over the focus when they are big enough in the&nbsp;frame.</li>
+        <li>Lucia has its own shutter&nbsp;click.</li>
+        <li>C0 RAW: your photo without any look, as a clean starting&nbsp;point.</li>
+        <li>INFO shows the real megapixels of every&nbsp;photo.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="editing">
+      <h3>Editing and library</h3>
+      <ul>
+        <li>Paste Settings now carries exposure along, for one photo or many at&nbsp;once.</li>
+        <li>The PRESET row turns red when your settings match a preset&nbsp;exactly.</li>
+        <li>FILMS › Get Fujifilm Film Simulations opens Fujifilm’s free&nbsp;download.</li>
+        <li>Instagram export as a full 9:16 canvas: the story is filled, the feed crop stays the&nbsp;same.</li>
+        <li>Export failed now tells you why and how to fix&nbsp;it.</li>
+        <li>Lucia pins Apple’s RAW decoder, so your photos look the same after an iOS&nbsp;update.</li>
+        <li>The library opens faster, and filters keep your place instead of jumping to the&nbsp;top.</li>
+        <li>Trash keeps deleted photos for 30 days. Delete here, or&nbsp;everywhere.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="fixed">
+      <h3>Fixed</h3>
+      <ul>
+        <li>A crash with strong&nbsp;grain.</li>
+        <li>Black or partly black photos after pasting&nbsp;settings.</li>
+        <li>Photos that had disappeared from the iPhone&nbsp;library.</li>
+        <li>A banding edge in skies with RAW&nbsp;BOOST.</li>
+        <li>A white flash on launch. Lucia starts black&nbsp;now.</li>
+        <li>Clips that went black after a few seconds with a&nbsp;look.</li>
+        <li>Many smaller things on the&nbsp;way.</li>
+      </ul>
+    </section>
+
+    <section class="teil" id="gut-zu-wissen">
+      <h3>Good to know</h3>
+      <ul>
+        <li>Lucia needs iOS 18&nbsp;now.</li>
+        <li>Negatives no longer show up in the Files app. Mac, iPad and SSD are the way&nbsp;now.</li>
+        <li>Clips stay in Lucia. Export them to get them into&nbsp;Photos.</li>
+        <li>iOS asks for access to your local network. Please allow it, otherwise pairing and sync can’t&nbsp;work.</li>
+        <li>iCloud syncs ratings, edits, presets and albums. Never your&nbsp;photos.</li>
+        <li>After the update your library is prepared once. All photos and presets are safe, it just takes a&nbsp;moment.</li>
+      </ul>
+    </section>
+
+    <p class="gruss">Tanti saluti!</p>
+    <a class="knopf" href="/#beta">Get the beta</a>
+  </article>
+
+  <!-- AELTERE VERSIONEN -->
+  <details class="version" id="beta-5">
+    <summary>
+      <div><div class="kopfzeile mono"><b>Beta 5</b><span>September 2026</span></div><h2>Lucia’s own film&nbsp;sims.</h2></div>
+      <span class="auf" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l5 5 5-5"/></svg></span>
+    </summary>
+    <div class="innen">
+      <section class="teil">
+        <ul>
+          <li><b>Lucia’s own looks.</b> Lucia Photo, Lucia Monochrome and a dedicated video&nbsp;look.</li>
+          <li><b>Video, first steps.</b> Two kinds of stabilization: Standard and&nbsp;Cinematic.</li>
+          <li><b>RAW import.</b> Bring RAWs you shot before Lucia and put any recipe or LUT on&nbsp;them.</li>
+          <li><b>Preset Cards.</b> Share a recipe as a card with a punch code, or import one from a&nbsp;screenshot.</li>
+          <li>As many presets as you&nbsp;want.</li>
+          <li>A new grain that sits inside the image, for smoother gradients and more believable&nbsp;texture.</li>
+          <li>Better white balance, blue skies and highlights, and custom white balance with a&nbsp;picker.</li>
+          <li>A histogram.</li>
+          <li>Dynamic Range per photo, with DR&nbsp;Auto.</li>
+          <li>New photos are HEIC, and prints land in the camera roll at 2880&nbsp;px.</li>
+          <li>Stars, undo and redo in the editor header, export in the&nbsp;editor.</li>
+        </ul>
+      </section>
+    </div>
+  </details>
+
+  <p class="klein">Lucia runs on iPhone 15 Pro or newer with iOS 18. <a href="/">luciacam.app</a> · <a href="/mac/">Lucia RAW Studio</a> · <a href="/privacy/">Privacy</a></p>
+</main>
+</body>
+</html>
